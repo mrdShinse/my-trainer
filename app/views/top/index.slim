@@ -1,0 +1,5 @@
+.container
+  h1 筋トレログ記録サービス My Trainer
+  = link_to('login', new_user_session_path)
+  = link_to('logout', destroy_user_session_path, { :method => :delete})
+  = link_to('signin', new_user_registration_path)
