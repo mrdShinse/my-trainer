@@ -2,6 +2,7 @@
   #rest-timer
     .rest-time-view
       p 休憩時間は {{RestTimerData.restTime}} 秒です。
+      v-progress-linear(v-model="percentage")
     .rest-time-over-view
       p トレーニングを再開してください。
 </template>
@@ -14,24 +15,31 @@
       RestTimerData: Object,
       require: true
     },
-    components: {
-    },
-    created: function() {
-    },
-    mounted: function() {
-    },
-    watch: {
+    computed: {
+      percentage: function() {
+        if(this.RestTimerData.restTime) {
+          return this.RestTimerData.times / this.RestTimerData.restTime * 100;
+        }
+        return 0;
+      }
     },
     methods: {
-      runTimer: function(restTime) {
-        console.log('restTime is '+restTime)
-        $('.rest-time-view').addClass('visible');
-        const waitMilliSec = restTime * 1000;
+      update: function(data) {
+        if(data.times == 0) {
+          $('.rest-time-over-view').removeClass('visible');
+          $('.rest-time-view').addClass('visible');
+        }else if(data.times == data.restTime) {
+          this.close();
+          return;
+        }
         setTimeout(() => {
-          eventHub.$emit('restTimeIsOver');
-          $('.rest-time-view').removeClass('visible');
-          $('.rest-time-over-view').addClass('visible');
-        }, waitMilliSec);
+          eventHub.$emit('restTimerTick', data);
+        }, 1000);
+      },
+      close: function() {
+        $('.rest-time-view').removeClass('visible');
+        $('.rest-time-over-view').addClass('visible');
+        eventHub.$emit('restTimeIsOver');
       }
     }
 

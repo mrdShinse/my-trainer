@@ -40,22 +40,35 @@
     },
     mounted: function() {
       eventHub.$on('menuSelected', this.setExerciseMenu)
-      eventHub.$on('exerciseDataSubmited', this.updateStatus)
+      eventHub.$on('exerciseDataSubmited', this.runTimer)
       eventHub.$on('restTimeIsOver', this.closeTimer)
+      eventHub.$on('restTimerTick', this.tickTimer);
     },
     methods: {
       setExerciseMenu: function(selectedMenu) {
         this.isMenuSelected = true;
         this.ExerciseInformationFormData = {name: selectedMenu};
       },
-      updateStatus: function(restTime) {
+      runTimer: function(restTime) {
         this.isMenuSelected = false;
         this.isTimerRun = true;
-        this.RestTimerData = { restTime };
-        this.$refs.restTimer.runTimer(restTime);
+        const RestTimerData = {
+          restTime,
+          times: 0
+        }
+        this.RestTimerData = RestTimerData;
+        this.$refs.restTimer.update(RestTimerData);
       },
       closeTimer: function() {
         this.isTimerRun = false;
+      },
+      tickTimer: function(data) {
+        const RestTimerData = {
+          restTime: data.restTime,
+          times: data.times + 1
+        }
+        this.RestTimerData = RestTimerData;
+        this.$refs.restTimer.update(RestTimerData);
       }
     }
 
