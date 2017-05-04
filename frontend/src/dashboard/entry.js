@@ -1,4 +1,4 @@
-const Vue = require('vue')
+import Vue from 'vue';
 window.eventHub = new Vue()
 
 window.onload = function() {
