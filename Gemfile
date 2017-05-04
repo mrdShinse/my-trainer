@@ -53,3 +53,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
+
+gem 'slim'
+gem 'bootbox-rails', '~>0.4'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'normalize-rails'

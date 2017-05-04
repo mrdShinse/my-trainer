@@ -1,0 +1,13 @@
+= stylesheet_link_tag 'top', media: 'all'
+.top-container
+  .top-message-container
+    h1.top-message 筋トレログ記録サービス My Trainer
+  .top-image-container
+    = image_tag("top-catch")
+    .top-copy
+      h2 My Trainer
+      p マイトレーナーはトレーニングのログをつける事で計画的に筋トレを行うサポートをします
+    .login-buttons
+      = link_to('ログイン', dashboard_url, class: "btn btn-primary btn-lg")
+      = link_to('ユーザー登録(無料)', new_user_registration_path, class: "btn btn-danger btn-lg")
+  = link_to('ログアウト', destroy_user_session_path, { :method => :delete})
