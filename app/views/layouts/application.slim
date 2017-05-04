@@ -3,15 +3,11 @@ html
   head
     title MyTrainer
     = csrf_meta_tags
-
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
+    = stylesheet_link_tag "https://unpkg.com/vuetify/dist/vuetify.min.css"
 
   body
     = render 'layouts/header'
     = yield
-    p.notice
-      = notice
-    p.alert
-      = alert
     = render 'layouts/footer'

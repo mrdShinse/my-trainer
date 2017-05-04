@@ -1,4 +1,7 @@
-const Vue = require('vue')
+import Vue from 'vue';
+import Vuetify from 'vuetify'
+
+Vue.use(Vuetify)
 window.eventHub = new Vue()
 
 window.onload = function() {
