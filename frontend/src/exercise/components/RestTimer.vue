@@ -7,6 +7,8 @@
 </template>
 
 <script>
+  import $ from 'jquery';
+
   export default {
     props: {
       RestTimerData: Object,
@@ -22,6 +24,7 @@
     },
     methods: {
       runTimer: function(restTime) {
+        console.log('restTime is '+restTime)
         $('.rest-time-view').addClass('visible');
         const waitMilliSec = restTime * 1000;
         setTimeout(() => {

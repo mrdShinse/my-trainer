@@ -1,19 +1,32 @@
 <template lang="pug">
-  .exercise-information-form
-    h4 {{ExerciseInformationFormData.name}}
-    .form-group
-      label 負荷
-      input.form-control(v-model="ExerciseInformationFormData.kg")
-      label kg
-    .form-group
-      label 回数
-      input.form-control(v-model="ExerciseInformationFormData.times")
-      label 回
-    .form-group
-      label 休憩
-      input.form-control(v-model="ExerciseInformationFormData.restTime")
-      label 秒
-    button.btn.btn-default(type="button" v-on:click="submitExerciseData") 送信
+  v-container(fluid="fluid")
+    v-row
+      v-col(xs12)
+        h4 {{ExerciseInformationFormData.name}}
+    v-row
+      v-col(xs4)
+        v-text-field(
+          v-model="ExerciseInformationFormData.weight"
+          label="負荷")
+      v-col(xs8)
+        v-subheader kg
+    v-row
+      v-col(xs4)
+        v-text-field(
+          v-model="ExerciseInformationFormData.reps"
+          label="回数")
+      v-col(xs8)
+        v-subheader 回
+    v-row
+      v-col(xs4)
+        v-text-field(
+          v-model="ExerciseInformationFormData.restTime"
+          label="休憩")
+      v-col(xs8)
+        v-subheader 秒
+    v-row
+      v-col(xs12)
+        button.btn.btn-default(type="button" v-on:click="submitExerciseData") 送信
 </template>
 
 <script>

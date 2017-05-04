@@ -1,29 +1,29 @@
 <template lang="pug">
-  .execixe-view-container
-    p メニューを選択してください
-    .menu-dropdown-container
-      ExerciseMenuDropdown(v-bind:ExerciseMenuDropdownData="ExerciseMenuDropdownData")
-    .exercise-info-form-container(v-if="isMenuSelected")
-      ExerciseInformationForm(v-bind:ExerciseInformationFormData="ExerciseInformationFormData")
-    .rest-timer-container
-      RestTimer(ref="restTimer" v-bind:RestTimerData="RestTimerData")
+  v-app
+    .execixe-view-container
+      p メニューを選択してください
+      .menu-dropdown-container
+        ExerciseMenuSelector(v-bind:ExerciseMenuSelectorData="ExerciseMenuSelectorData")
+      .exercise-info-form-container(v-if="isMenuSelected")
+        ExerciseInformationForm(v-bind:ExerciseInformationFormData="ExerciseInformationFormData")
+      .rest-timer-container
+        RestTimer(ref="restTimer" v-bind:RestTimerData="RestTimerData")
 </template>
 
 <script>
   export default {
     components: {
-      ExerciseMenuDropdown:   require('./ExerciseMenuDropdown.vue'),
+      ExerciseMenuSelector:   require('./ExerciseMenuSelector.vue'),
       ExerciseInformationForm: require('./ExerciseInformationForm.vue'),
       RestTimer:              require('./RestTimer.vue')
     },
     data: function() {
       return {
-        ExerciseMenuDropdownData: {
-          ExerciseMenuItems: [{
-            name: 'プッシュアップ'
-          },{
-            name: 'プランク'
-          }]
+        ExerciseMenuSelectorData: {
+          items: [
+            'プッシュアップ',
+            'プランク'
+          ]
         },
         ExerciseInformationFormData: {
           isSelected: false
@@ -46,7 +46,7 @@
     methods: {
       setExerciseMenu: function(selectedMenu) {
         this.isMenuSelected = true;
-        this.ExerciseInformationFormData = selectedMenu;
+        this.ExerciseInformationFormData = {name: selectedMenu};
       },
       updateStatus: function(restTime) {
         this.isMenuSelected = false;
@@ -65,6 +65,7 @@
 
 <style lang="sass?indentedSyntax" scoped>
   .execixe-view-container
+    height: 600px;
     min-width: 240px;
     min-height: 420px;
 </style>
