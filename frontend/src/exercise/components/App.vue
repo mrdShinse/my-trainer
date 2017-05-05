@@ -1,13 +1,12 @@
 <template lang="pug">
-  v-app
-    .execixe-view-container
-      p メニューを選択してください
-      .menu-dropdown-container
-        ExerciseMenuSelector(v-bind:ExerciseMenuSelectorData="ExerciseMenuSelectorData")
-      .exercise-info-form-container(v-if="isMenuSelected")
-        ExerciseInformationForm(v-bind:ExerciseInformationFormData="ExerciseInformationFormData")
-      .rest-timer-container
-        RestTimer(ref="restTimer" v-bind:RestTimerData="RestTimerData")
+  v-app.execixe-view-container
+    p メニューを選択してください
+    .menu-dropdown-container
+      ExerciseMenuSelector(v-bind:ExerciseMenuSelectorData="ExerciseMenuSelectorData")
+    .exercise-info-form-container(v-if="isMenuSelected")
+      ExerciseInformationForm(v-bind:ExerciseInformationFormData="ExerciseInformationFormData")
+    .rest-timer-container
+      RestTimer(ref="restTimer" v-bind:RestTimerData="RestTimerData")
 </template>
 
 <script>
@@ -78,7 +77,6 @@
 
 <style lang="sass?indentedSyntax" scoped>
   .execixe-view-container
-    height: 600px;
     min-width: 240px;
-    min-height: 420px;
+    min-height: 380px;
 </style>
